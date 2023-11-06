@@ -1,4 +1,6 @@
-"""names = []
+
+"""
+names = []
 
 for _ in range(3):
   names.append(input("What is your name? "))
@@ -94,7 +96,7 @@ with open("names.txt") as file:
   for line in file:
     names.append(line.rstrip())
 
-for name in sorted(names):    # sorting the list before itarating over it
+for name in sorted(names):    # sorting the list before itrating over it
   print(f"Hello, {name}")  
 
 
@@ -114,6 +116,7 @@ with open("names.txt") as file:
 
 #  docs.python.org/3/library/function.html#sorted
 #  here you can find all pissible ways of sorting 
+
 
 
   
