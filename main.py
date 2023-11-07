@@ -33,7 +33,7 @@ file.close()
 
 """
 
-#$ rm names.txt // Removes file // works in CLI like built-in terminal or any other shells
+
 
 """
 name = input("What is your name? ")
@@ -414,6 +414,24 @@ def get_dep(emploee):
 for emploee in sorted(names, key = get_depm, reverse = True):
   print(f"{emploee['name']} works at {emploee['dep']}") 
 
+# there were examples of creating sorting algorithms from scrach. 
+# With other functions or libraries, some of this could be made more easily done.
+# 
+# 
+# as I metioned before "The documentation is your friend!" 
+# docs.python.org
 
+# Some of this could be made easier.
+
+# NOTE!!! that as a value to the parameter key we need to pass a VALUE
+# 
+# in our case when you pass in a function get_name or get_dep into the sorted function as a value of key,
+# that function is automatically called by the sorted functoin for you 
+# on each of the dictionaries in the list.
+# And it uses the return value of them to decide what string to actually use to compare in oder to decide
+# which is aplphabeticlally correct.
+
+# So you you need to pass this function by name, you don't need to pass in paretheses at the end,
+# is called by by the sorted function
 
 
