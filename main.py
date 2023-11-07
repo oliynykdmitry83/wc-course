@@ -99,10 +99,11 @@ with open("names.txt") as file:
 for name in sorted(names):    # sorting the list before itrating over it
   print(f"Hello, {name}")  
 
-
 """
 
-# we can do it in a more compact way:
+
+# we can do it in a more compact way: 
+# it looks much more "Pythonic" :)
 
 """
 with open("names.txt") as file:
@@ -115,7 +116,29 @@ with open("names.txt") as file:
 #  Do we actially want to make changes to the data we are iterating over?
 
 #  docs.python.org/3/library/function.html#sorted
-#  here you can find all pissible ways of sorting 
+#  here you can find all possible ways of sorting 
+
+"""
+names = []
+
+with open("names.txt") as file:
+  for line in file:
+    names.append(line.rstrip())
+
+for name in sorted(names):    # sorting the list before itrating over it
+  print(f"Hello, {name}")
+"""
+
+# By default sorted function sorts data in the alphabetic order A -> Z and 1 -> 10
+# But you can puss as a parameter to the sorted(obj, reverse = True)reversed order 
+# as I mentioned before: "The documentation is your friend!" 
+# docs.python.org
+
+# by default it looks like: sorted(iterable, /, *, key = None, reverse = False)
+# key - param we will talk about it later
+
+
+
 
 
 
