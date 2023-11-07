@@ -224,15 +224,16 @@ with open("names.csv") as file:
 """
 names = []
 
-with open("names.csv") as a file:
+with open("names.csv") as file:
   for line in file:
     name, dep = line.rstrip().split(",")
-    names.append{f"{name} works at {dep}"}
+    names.append(f"{name} works at {dep}")
 
 for name in sorted(names):
   print(name)
 
 """
+
 # technicly even if we want to sort this by name we actyally
 # sor tthis by whole English sentences.
 # It's not wrogn, it's achieving the intended result, but it's not really
@@ -257,9 +258,10 @@ for name in sorted(names):
 # Let's create a dictionary that stores this assiciation of name with department.
 #    
 
+"""
 names = []
 
-with open("names.csv") as a file:
+with open("names.csv") as file:
   for line in file:
     name, dep = line.rstrip().split(",")
     emploee = {}
@@ -275,8 +277,10 @@ with open("names.csv") as a file:
                           # Why have we done this?
                           # 
                           # well, let's  just do something simple:
-for employee in names:
-  print(f"{emploee['name']} works at {emploee['dep']}") 
+for emploee in names:
+  print(f"{emploee['name']} works at {emploee['dep']}")
+
+"""
 
 # inside of this F string, we're using curly brackets, as always.
 # Inside of thouse we're using the name of a variable as always.
@@ -285,5 +289,131 @@ for employee in names:
 # 
 # But why are we using these single quotes to surround department or name?
 #    
+
+
+
+# If you're in the habbit  of creating an empty dictionary, like in this line 265,
+# and then immediately putting into two keys, name and department, you can do it all at once 
+#
+"""
+names = []
+
+with open("names.csv") as file:
+  for line in file:
+    name, dep = line.rstrip().split(",")
+    emploee = {"name": name, "dep": dep}  # here we creating a new non-empty dicionary
+                                          # containing a name key,and a department value 
+    names.append(emploee)
+
+for emploee in names:
+  print(f"{emploee['name']} works at {emploee['dep']}") 
+
+"""
+# it still works but the're still not quite actually sorted 
+
+# We nee d some mechanism now of sorting thouse emploees.
+# But unfortunatelly we can't do this. We can't sort all of this emploees now because thouse emploees are not names
+# like they were before. They aren't sentances like they were before.
+# Each of the enploee is a dictionary now, and it's non obvious 
+# how you would sort a dictionary inside of a list.
 # 
-# #
+# \
+# So, ideally what do we want to do?
+# 
+# if at the moment we hit the line 307 (where we're starting iterating throug),
+# we have a list of all these emploees, and inside of that list is a one dictionary per emploee,
+# and each of this dictionaries has two keys, name and dep,
+# wouldn't it be nice if there were way in code to tell Python, sort this list 
+# by looking at this key in each dictionary?
+# 
+# Because that would give us the ability to sort either by name, or even by house, 
+# or even by any other field that we add to that file.
+# 
+# We can tel the sorted function not just to reverce things or not.
+# It takes another positional - it takes another named parameter called key, 
+# where you can specify what key should be used in oder to sort some list of dictionaries.
+# 
+# 
+# to do this we're going to first define a function - temporarily, fro now - called get_name.
+# And this function purpose in life, given a emploee, is to simply return the emploee name 
+# from particular dictionary.
+# and that's it. That's the sole puprose of this function in life
+# 
+# def get_name(emploee):
+#  return emploee["name"]
+
+
+# What do we now wanna do?
+# 
+# We can change sorted to say, use a key that's equal to whatever the return value of get_mane is.
+#  
+# And this now is a feature of Python.
+# Python allows you to pass functions as arguments into other functions.
+# So, get_name is a funtion, sorted is a function.
+# and we are passing in get_name to sorted as the value of that key parameter.
+# 
+# Why are we doing that?
+# 
+# If you can think of the get_name function, it's just a block of code that will get the name of an emploee.
+# That's handy because that's the capability that sorted needs.
+# When given a list of staff, each of wich is a dictionary, sorted needs to konw, how do I get the name of the emploee?
+# In order to do alphabetical sorting for you.
+# 
+# The The authors of Python didn't know that we were going to be creating emploees here in this class.
+# So what did they do?
+#  
+# They instead built into the sorted function this named paramater key that allows us to tell their function sorted 
+# how to sort this list of dictionaries.  
+#    
+"""
+names = []
+
+with open("names.csv") as file:
+  for line in file:
+    name, dep = line.rstrip().split(",")
+    emploee = {"name": name, "dep": dep} 
+    names.append(emploee)
+
+
+def get_name(emploee):
+  return emploee["name"]
+
+for emploee in sorted(names, key = get_name):
+  print(f"{emploee['name']} works at {emploee['dep']}") 
+
+"""
+
+
+# now we have a sorted list of output.
+# 
+# Why?
+# 
+# Because now that list of dictionaries has all been sorted by emploees' name. 
+# We can reverse it by pussing an aditional parameter as we were doing before reverse = True     
+# 
+# if we need/want to sort this, for instance, by department we can create the simular function
+# get_dep:
+# 
+# def get_dep(emploee):
+#   return emploee["dep"] 
+
+# and pass it as a key insted of get_name
+
+names = []
+
+with open("names.csv") as file:
+  for line in file:
+    name, dep = line.rstrip().split(",")
+    emploee = {"name": name, "dep": dep} 
+    names.append(emploee)
+
+
+def get_dep(emploee):
+  return emploee["dep"]
+
+for emploee in sorted(names, key = get_depm, reverse = True):
+  print(f"{emploee['name']} works at {emploee['dep']}") 
+
+
+
+
