@@ -138,8 +138,52 @@ for name in sorted(names):    # sorting the list before itrating over it
 # key - param we will talk about it later
 
 
+"""names = []
+
+with open("names.txt") as file:
+  for line in file:
+    names.append(line.rstrip())
+
+for name in sorted(names, reverse = True): 
+  print(f"Hello, {name}")
+
+"""
+
+# you can look for specific value or specific data in a file by iterating throug using the for loop
+# and pass the codition for your search.
+
+
+
+#################################################
+
+# .txt files are good enougt for keeping some simle data
+# for storing "more complex" sets of data programmers (by convention) use CSV-files
+# CommaSeparetedValues
+# and it's a very common convention to store multiple pieces of information that are related in the same file. 
+
+# in these .csv files you can see a sort of two-dimentional file
+# row by row we have our names with releted to these names infornation (the name of the department in this case)
+# you can think about this commas as representing a column
+# and it turns out, these CSV files are very commonly used when you use something like Microsoft Exel, Apple Numbers,
+# or Google spread sheets, and you want ot export the data to share with someone else as a CSV file.
+# or conversely, if you want to inport a CSV file into your prefered spreadsheet software,
+# you can do that as well.
+
+# So, CSV is very common, very simple text format, that just separetes values with commas, 
+# and different types of values, ultimately with new lines as well.
+
+# In this case these names and departments they're not all on one line.
+# We can have an access to both type of value separately
+
+
+with open("names.csv") as file:     # file it's just a random named variable
+  for line in file:
+    row = line.rstrip().split(",")  # this returns you a list of all of the individual parts to the left and to the right of those commas.
+                                    # it's coomon paradigm when you're iterating over a file, specificly a CSV,
+                                    # it's common to think of each line if it as being a row and each of the values therein separated by commas 
+                                    # as columns.
+    print(f"{row[0]} works in {row[1]}")  
 
 
 
 
-  
