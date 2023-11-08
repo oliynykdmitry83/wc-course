@@ -438,4 +438,33 @@ for employee in sorted(names, key = get_dep, reverse = True):
 
 ###########################
 
-# 
+# If you are defining something, and immediately using it (in our case a function), but never,
+# once again, needing the name of that function, like get_name and get_dep, we can actually tighten this code
+# up further.
+# We can get rid of this function, get_name all together., and instead of passing key, the name of the function,
+# We can actually pass key what's called a lambda function, which is an anonimous function, a function that just has no name.
+# Because we don't need to give it a name if we're only going to call it in one place.
+# And the syntax for this in Python is quite weird.
+#    
+
+names = []
+
+with open("names.csv") as file:
+  for line in file:
+    name, dep = line.rstrip().split(",")
+    employee = {"name": name, "dep": dep} 
+    names.append(employee)
+
+
+for employee in sorted(names, key = lambda employee: employee["name"]):   # we even don't need a type a Return key
+  print(f"{employee['name']} works at {employee['dep']}") 
+
+# lambda employee: employee["name"] this code here is equivalent to the get-name function we used before
+# the syntax is a little bit different but the result is the same.
+#
+# we are passing the our list of employees as a parameter to this function.
+# this function is called on every one of the dictionary in that list (employee in our particular case).
+#  
+# if you run this program now, you'll get the same result. It still seems to work the same, 
+# but it's arguably a little better design because we didn't waste lines of code by defining some other function,
+# colling it in one and only one place. 
