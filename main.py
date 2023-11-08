@@ -578,7 +578,21 @@ for employee in sorted(employees, key = lambda employee: employee["name"]):
 # you can fin it:    pillow.readthedocs.io
 
 
-# good luck)
+# in addition to that:
+#
+# Task:  The two files PeriodicTable1to40.csv and PeriodicTable 41To88.csv
+# contain extracts from the periodic table.
+
+# Write a program to open the first file and select a number of columns 
+# to form a new file.  Write this to disk and end the program.
+# Then open your file and open the periodicTable41To88.csv and append records from the second file to your new file.
+# Then close end the program and open a program to read your file and count the number of elements
+# in each state listed - solid, gas etc.  Write a file containing only the gases.
+
+
+# your third assignment will be approximately the same
+# so, pay a little bit more attention to this topic
+
 
 
 
