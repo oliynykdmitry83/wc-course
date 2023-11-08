@@ -466,11 +466,11 @@ for employee in sorted(names, key = lambda employee: employee["name"]):   # we e
 # the syntax is a little bit different but the result is the same.
 #
 # we are passing the our list of employees as a parameter to this function.
-# this function is called on every one of the dictionary in that list (employee in our particular case).
+# this function is called on every one of the dictionaries in that list (employee in our particular case).
 #  
 # if you run this program now, you'll get the same result. It still seems to work the same, 
 # but it's arguably a little better design because we didn't waste lines of code by defining some other function,
-# colling it in one and only one place. 
+# calling it in one and only one place. 
 #
 # As well as the "ordinary" function, a lambda function can take several parameters. You can pass them by using commas 
 # as you do in "ordinary functions"
@@ -484,15 +484,15 @@ for employee in sorted(names, key = lambda employee: employee["name"]):   # we e
 # https://docs.python.org/3/library/csv.html
 
 # all this will work perfecly while we deal with two parameters in our csv file.
-# actually we can deal in tis way with much more paramters but our code will be much more complicated
+# actually we can deal in this way with many more paramters but our code will be much more complicated
 # and we'll faced with writing "over complicated" conditionals for "split" function and so on.
 # 
 
 #
 #     
 
-# Python has a library to deall with csv files wich can help us to deal with csv files
-# we just need to import it in the begining.
+# Python has a library to deal with csv files.
+# We just need to import it in the begining.
 
 
 
@@ -515,7 +515,7 @@ for employee in sorted(employees, key = lambda employee: employee["name"]):
 """
 
 
-# as in previous examples we can rewrite it to this format:
+# as in the previous examples we can rewrite it to this format:
 
 
 
@@ -525,6 +525,9 @@ import sys
 modulename = 'csv'
 if modulename not in sys.modules:
     print ('You have not imported the {} module'.format(modulename))
+"""
+
+
 """
 import csv
 
@@ -538,6 +541,44 @@ with open("names2.csv") as file:
 for employee in sorted(employees, key = lambda employee: employee["name"]):  
   print(f"{employee['name']} came from {employee['backgr']}") 
 
+"""
+
+
+# if we use DictReader instead of reader we will have the next:
+# Dict reader will now iterate over the file from top to bottom,
+# loading in each line of text not as a list of columns
+# but as a dictionary of columns.
+# It gives us automatic access to those columns' names.
+# 
+# 
+
+
+import csv
+
+employees = []
+
+with open("names3.csv") as file:
+  reader = csv.DictReader(file)
+  for row in reader:
+    employees.append({"name": row["name"], "backgr": row["backgr"]})
+
+for employee in sorted(employees, key = lambda employee: employee["name"]):  
+  print(f"{employee['name']} came from {employee['backgr']}") 
+
+
+# be aware that: 
+# you can move columns around (in this case your code will be broken) 
+# but to aviod it you should pay attention to the order of your headers and variables respectively 
+
+# It will be your homework to find out how to write CSV files and find out what DictWriter is and how to use some of its
+# most useful features.
+
+# Find out the ways of dealing with binary files such as images, video, audio etc
+# for examle libraries such as pillow
+# you can fin it:    pillow.readthedocs.io
+
+
+# good luck)
 
 
 
