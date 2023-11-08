@@ -447,6 +447,7 @@ for employee in sorted(names, key = get_dep, reverse = True):
 # And the syntax for this in Python is quite weird.
 #    
 
+"""
 names = []
 
 with open("names.csv") as file:
@@ -459,6 +460,8 @@ with open("names.csv") as file:
 for employee in sorted(names, key = lambda employee: employee["name"]):   # we even don't need a type a Return key
   print(f"{employee['name']} works at {employee['dep']}") 
 
+"""
+
 # lambda employee: employee["name"] this code here is equivalent to the get-name function we used before
 # the syntax is a little bit different but the result is the same.
 #
@@ -468,3 +471,74 @@ for employee in sorted(names, key = lambda employee: employee["name"]):   # we e
 # if you run this program now, you'll get the same result. It still seems to work the same, 
 # but it's arguably a little better design because we didn't waste lines of code by defining some other function,
 # colling it in one and only one place. 
+#
+# As well as the "ordinary" function, a lambda function can take several parameters. You can pass them by using commas 
+# as you do in "ordinary functions"
+# 
+# and again: "Documentation is your friend"
+# https://docs.python.org/3/reference/expressions.html#lambda
+
+
+#####################################################
+
+# https://docs.python.org/3/library/csv.html
+
+# all this will work perfecly while we deal with two parameters in our csv file.
+# actually we can deal in tis way with much more paramters but our code will be much more complicated
+# and we'll faced with writing "over complicated" conditionals for "split" function and so on.
+# 
+
+#
+#     
+
+# Python has a library to deall with csv files wich can help us to deal with csv files
+# we just need to import it in the begining.
+
+
+
+"""
+import csv
+
+employees = []
+
+with open("names2.csv") as file:
+  reader = csv.reader(file) # "reader()" reads the file, figure out, where are the commas, 
+                            # where the quotes, where are all the potential corner cases,
+                            # adn just deal with them for you.
+
+  for row in reader:        # so, we are not iterating over the file directly now. We're iterating over the reader, which is, again,
+                            # going to hadle all of the parsing of commas, and new lines, and more
+    employees.append({"name": row[0], "backgr": row[1]})
+
+for employee in sorted(employees, key = lambda employee: employee["name"]): 
+  print(f"{employee['name']} came from {employee['backgr']}") 
+"""
+
+
+# as in previous examples we can rewrite it to this format:
+
+
+
+"""
+import sys
+
+modulename = 'csv'
+if modulename not in sys.modules:
+    print ('You have not imported the {} module'.format(modulename))
+"""
+import csv
+
+employees = []
+
+with open("names2.csv") as file:
+  reader = csv.reader(file)
+  for name, backgr in reader:
+    employees.append({"name": name, "backgr": backgr})
+
+for employee in sorted(employees, key = lambda employee: employee["name"]):  
+  print(f"{employee['name']} came from {employee['backgr']}") 
+
+
+
+
+
