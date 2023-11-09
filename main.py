@@ -69,25 +69,27 @@ with open("names.txt", "r") as file:
 for line in lines:
   print("Hello, ",  line)
 
+"""
+
 # to get rid of an empty line at the end of each line(after each Name)
 # you can pass the third arugment to print() as end=""
 # or you can use rstrip() to remove whitespaces from the end of each line
 
-"""
+
 # you can rewrite this code in a little bit different/"Pythonic"/more compact way:
 
-"""
+
 with open("names.txt", "r") as file:  # open file for reading
   for line  in file:                  # iterativly read each line
     print("Hello, ", line.rstrip())   # print each line and remove whitespaces
 
-"""
+
 
 #  to sort data from this file we need to read it first, then put in a list and sort it
 #  note! that we are fetching data from a file and put everything into a variable and 
 #  manupulating it
 
-"""
+
 names = []  #  it's quite a common technique to fetch data, put it into a temporary
             #  variable and using certain features of the type of variable we can
             #  manipulate it
@@ -99,7 +101,7 @@ with open("names.txt") as file:
 for name in sorted(names):    # sorting the list before iterating over it
   print(f"Hello, {name}")  
 
-"""
+
 
 
 # we can do it in a more compact way: 
@@ -552,7 +554,7 @@ for employee in sorted(employees, key = lambda employee: employee["name"]):
 # 
 # 
 
-
+"""
 import csv
 
 employees = []
@@ -565,6 +567,7 @@ with open("names3.csv") as file:
 for employee in sorted(employees, key = lambda employee: employee["name"]):  
   print(f"{employee['name']} came from {employee['backgr']}") 
 
+"""
 
 # be aware that: 
 # you can move columns around (in this case your code will be broken) 
